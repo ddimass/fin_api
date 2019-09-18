@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
-
+import datetime
 
 
 def index(request):
@@ -30,9 +30,14 @@ def api_bars(request):
             instrument = Instrument.objects.get(name=data['instrument'].upper(), created_by = request.user)
         else:
             instrument = Instrument.objects.get(id=data['instrument'], created_by = request.user)
+        if isinstance(data['time'], int):
+            time = datetime.datetime.fromtimestamp(data['time'])
+        else:
+            time = data['time']
+
         serializer = BarSerializer(data=data, context={'request': request})
         if serializer.is_valid():
-            serializer.save(instrument=instrument)
+            serializer.save(instrument=instrument, time=time)
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
 

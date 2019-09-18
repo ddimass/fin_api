@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+TIMEFRAME_CHOICES = [
+        (1, 'M1'),
+        (16386, 'H1'),
+    ]
+
 class Instrument(models.Model):
     name = models.CharField(max_length=30)
     desc = models.TextField(blank=True)
@@ -14,10 +19,7 @@ class Instrument(models.Model):
 
 
 class Bar(models.Model):
-    TIMEFRAME_CHOICES = [
-        (1, 'M1'),
-        (16386, 'H1'),
-    ]
+
     time = models.DateTimeField()
     timeframe = models.IntegerField
     open = models.FloatField()
