@@ -8,7 +8,7 @@ class BarSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bar
-        fields = ['id', 'time', 'open', 'high', 'low', 'close', 'tick_volume', 'spread', 'real_volume', 'instrument', 'created_by']
+        fields = ['id', 'time', 'open', 'high', 'low', 'close', 'tick_volume', 'spread', 'real_volume', 'instrument', 'timeframe', 'created_by']
 
 
 class InstrumentSerializer(serializers.ModelSerializer):

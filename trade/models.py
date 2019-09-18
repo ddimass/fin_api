@@ -14,7 +14,12 @@ class Instrument(models.Model):
 
 
 class Bar(models.Model):
+    TIMEFRAME_CHOICES = [
+        (1, 'M1'),
+        (16386, 'H1'),
+    ]
     time = models.DateTimeField()
+    timeframe = models.IntegerField
     open = models.FloatField()
     high = models.FloatField()
     low = models.FloatField()
@@ -23,6 +28,7 @@ class Bar(models.Model):
     spread = models.IntegerField(blank=True, null=True)
     real_volume = models.BigIntegerField(blank=True, null=True)
     instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
+    timeframe = models.IntegerField(choices=TIMEFRAME_CHOICES, default=1)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
