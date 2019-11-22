@@ -19,9 +19,7 @@ class Instrument(models.Model):
 
 
 class Bar(models.Model):
-
     time = models.DateTimeField()
-    timeframe = models.IntegerField
     open = models.FloatField()
     high = models.FloatField()
     low = models.FloatField()
@@ -33,5 +31,10 @@ class Bar(models.Model):
     timeframe = models.IntegerField(choices=TIMEFRAME_CHOICES, default=1)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.instrument.name + ' - ' + self.time.strftime("%Y-%m-%d %H:%M:%S")
+    #def __str__(self):
+     #   return self.instrument.name + ' - ' + self.time.strftime("%Y-%m-%d %H:%M:%S")
+
+    class Meta:
+        verbose_name_plural = 'Bars'
+        verbose_name = 'Bar'
+        ordering = ['-id']

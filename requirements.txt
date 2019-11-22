@@ -3,4 +3,9 @@ psycopg2>=2.7,<3.0
 djangorestframework
 djangorestframework_simplejwt
 django-cors-headers
+django-filter
 Pillow
+h5py
+tensorflow
+keras
+sklearn
